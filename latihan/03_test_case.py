@@ -31,3 +31,8 @@ print("T4:", status(59))
 
 # Test Case 5
 print("T5:", nilai_tertinggi([80, 60, 90, 70]))
+# Test Case 6: Data kosong untuk menghitung rata-rata
+print("T6:", hitung_rata_rata([]))
+
+# Test Case 7: Data kosong untuk mencari nilai tertinggi
+print("T7:", nilai_tertinggi([]))

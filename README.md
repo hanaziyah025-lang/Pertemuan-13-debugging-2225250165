@@ -1,62 +1,157 @@
-# Pertemuan 13 - Debugging dan Testing
+# Pertemuan 13 - Debugging, Tracing, dan Testing
 
-Nama: Hana Karimah Ghoziyah  
-NIM: 2225250165  
-Kelas: 3B
+**Nama:** Hana Karimah Ghoziyah  
+**NIM:** 2225250165  
+**Kelas:** 3B
 
-## Kasus
+## 1. Tujuan Praktik
 
-Program yang diuji adalah program pengolahan nilai mahasiswa yang memiliki tiga fungsi, yaitu menghitung rata-rata nilai, menentukan status kelulusan, dan mencari nilai tertinggi.
+Praktik ini bertujuan untuk memahami proses tracing, debugging, dan testing pada program. Kegiatan dilakukan dengan menelusuri jalannya program, menemukan kesalahan, memperbaiki kode, dan menguji kembali hasilnya.
 
-Pengujian dilakukan untuk menemukan kesalahan pada program, memperbaiki kesalahan, dan menguji kembali hasilnya.
+## 2. Tracing Program
 
-## Test Case
+Tracing dilakukan dengan mengikuti perubahan nilai variabel selama program dijalankan.
 
-| ID | Input | Expected | Actual Awal | Status |
-|---|---|---|---|---|
-| T1 | [80, 60, 90, 70] | 75.0 | 60.0 | Gagal |
-| T2 | [100, 80] | 90.0 | 36.0 | Gagal |
-| T3 | 60 | Lulus | Tidak lulus | Gagal |
-| T4 | 59 | Tidak lulus | Tidak lulus | Lulus |
-| T5 | [80, 60, 90, 70] | 90 | 0 | Gagal |
+Contoh program:
 
-## Bug Report
+```python
+total = 1
 
-### 1. Bug Perhitungan Rata-rata
-- Gejala: Hasil rata-rata tidak sesuai dengan jumlah data.
-- Lokasi: Fungsi `hitung_rata_rata()`.
-- Akar penyebab: Program membagi jumlah nilai dengan angka tetap 5.
-- Perbaikan: Mengganti angka 5 dengan `len(nilai)`.
+for i in range(1, 5):
+    total = total * i
 
-### 2. Bug Status Kelulusan
-- Gejala: Nilai 60 dinyatakan tidak lulus.
-- Lokasi: Fungsi `status()`.
-- Akar penyebab: Menggunakan operator `>` sehingga nilai harus lebih besar dari 60.
-- Perbaikan: Mengganti operator `>` menjadi `>=`.
+print(total)
+```
 
-### 3. Bug Nilai Tertinggi
-- Gejala: Hasil nilai tertinggi selalu 0.
-- Lokasi: Fungsi `nilai_tertinggi()`.
-- Akar penyebab: Menggunakan perbandingan `<` dan nilai awal 0.
-- Perbaikan: Menggunakan nilai pertama sebagai nilai awal dan mengganti operator `<` menjadi `>`.
+Tabel tracing:
 
-## Retest
+| Iterasi | Nilai i | Total sebelum | Total sesudah |
+|---|---:|---:|---:|
+| Awal | - | - | 1 |
+| 1 | 1 | 1 | 1 |
+| 2 | 2 | 1 | 2 |
+| 3 | 3 | 2 | 6 |
+| 4 | 4 | 6 | 24 |
 
-Setelah program diperbaiki, dilakukan pengujian ulang menggunakan lima test case.
+**Output:** `24`
 
-| ID | Expected | Actual Setelah Perbaikan | Status |
+Berdasarkan tracing tersebut, nilai `total` berubah pada setiap iterasi hingga menghasilkan 24.
+
+## 3. Kasus Debugging
+
+Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki tiga fungsi, yaitu menghitung rata-rata nilai, menentukan status kelulusan, dan mencari nilai tertinggi.
+
+### Bug 1: Perhitungan Rata-rata
+
+- Gejala: hasil rata-rata tidak sesuai dengan jumlah data.
+- Lokasi: fungsi `hitung_rata_rata()`.
+- Penyebab: program membagi jumlah nilai dengan angka tetap 5.
+- Perbaikan: mengganti angka 5 dengan `len(nilai)` dan menambahkan penanganan data kosong.
+
+### Bug 2: Status Kelulusan
+
+- Gejala: nilai 60 dinyatakan tidak lulus.
+- Lokasi: fungsi `status()`.
+- Penyebab: menggunakan operator `>` sehingga nilai harus lebih besar dari 60.
+- Perbaikan: mengganti operator `>` menjadi `>=`.
+
+### Bug 3: Nilai Tertinggi
+
+- Gejala: hasil nilai tertinggi selalu 0.
+- Lokasi: fungsi `nilai_tertinggi()`.
+- Penyebab: menggunakan perbandingan `<` dan nilai awal 0.
+- Perbaikan: menggunakan nilai pertama sebagai nilai awal dan mengganti operator `<` menjadi `>`.
+
+## 4. Test Case
+
+| ID | Input | Expected Result |
+|---|---|---|
+| T1 | Rata-rata `[80, 60, 90, 70]` | 75.0 |
+| T2 | Rata-rata `[100, 80]` | 90.0 |
+| T3 | Status nilai 60 | Lulus |
+| T4 | Status nilai 59 | Tidak lulus |
+| T5 | Nilai tertinggi `[80, 60, 90, 70]` | 90 |
+| T6 | Rata-rata `[]` | 0 |
+| T7 | Nilai tertinggi `[]` | None |
+
+## 5. Hasil Retest
+
+Pengujian ulang dilakukan setelah program diperbaiki. Hasil T1 sampai T5 telah diperoleh dari pengujian sebelumnya. T6 dan T7 merupakan pengujian tambahan yang akan dijalankan untuk memastikan program menangani data kosong.
+
+| ID | Expected Result | Actual Result | Status |
 |---|---|---|---|
 | T1 | 75.0 | 75.0 | Berhasil |
 | T2 | 90.0 | 90.0 | Berhasil |
 | T3 | Lulus | Lulus | Berhasil |
 | T4 | Tidak lulus | Tidak lulus | Berhasil |
 | T5 | 90 | 90 | Berhasil |
+T6 | Rata-rata data kosong | 0 | Berhasil
+T7 | Nilai tertinggi data kosong | None | Berhasil
 
-Seluruh lima test case berhasil dijalankan dengan hasil sesuai harapan.
+## 6. Kuis Formatif
 
-## Cara Menjalankan
+**1. Apa perbedaan syntax error, runtime error, dan logical error?**
 
-Jalankan perintah berikut melalui terminal:
+Syntax error adalah kesalahan penulisan kode. Runtime error terjadi ketika program sedang dijalankan. Logical error terjadi ketika program berjalan, tetapi hasilnya tidak sesuai dengan yang diharapkan.
+
+**2. Apa fungsi traceback?**
+
+Traceback digunakan untuk menunjukkan informasi kesalahan, termasuk lokasi dan urutan pemanggilan fungsi yang menyebabkan error.
+
+**3. Kapan Step Into digunakan?**
+
+Step Into digunakan ketika ingin masuk ke dalam fungsi yang dipanggil dan menelusuri perintah di dalam fungsi tersebut.
+
+**4. Apa perbedaan Step Over dan Step Into?**
+
+Step Over menjalankan satu baris tanpa masuk ke dalam fungsi yang dipanggil. Step Into masuk ke dalam fungsi agar perintah di dalamnya dapat diperiksa.
+
+**5. Mengapa nilai batas perlu dimasukkan dalam test case?**
+
+Nilai batas perlu diuji untuk memastikan program menangani kondisi tepat pada batas dengan benar, misalnya nilai kelulusan 60.
+
+**6. Apa perbedaan expected result dan actual result?**
+
+Expected result adalah hasil yang diharapkan, sedangkan actual result adalah hasil yang benar-benar diperoleh ketika program dijalankan.
+
+**7. Apa yang dimaksud regresi setelah perbaikan?**
+
+Regresi adalah munculnya kembali kesalahan atau munculnya kesalahan baru setelah program diperbaiki.
+
+**8. Mengapa debugging perlu diawali dengan reproduksi masalah?**
+
+Agar kesalahan dapat diamati kembali sehingga penyebabnya lebih mudah ditemukan dan diperiksa.
+
+**9. Mengapa perubahan kode sebaiknya minimal saat memperbaiki bug?**
+
+Agar perbaikan lebih terarah dan mengurangi kemungkinan munculnya kesalahan baru pada bagian lain program.
+
+**10. Apa manfaat commit khusus bertipe fix pada GitHub?**
+
+Commit bertipe fix membantu mencatat perubahan yang dilakukan untuk memperbaiki bug sehingga riwayat perbaikan program lebih mudah ditelusuri.
+
+## 7. Refleksi
+
+Teknik debugging yang paling membantu adalah tracing dan breakpoint karena dapat digunakan untuk mengetahui proses jalannya program serta melihat perubahan nilai variabel. Step Over membantu menjalankan program baris demi baris, sedangkan Step Into dapat digunakan untuk menelusuri perintah di dalam fungsi.
+
+Testing membantu memastikan bahwa program sudah berjalan sesuai harapan setelah diperbaiki. Melalui kegiatan ini, saya belajar menemukan penyebab kesalahan, memperbaiki kode, dan melakukan pengujian ulang.
+
+## 8. Cara Menjalankan Program
+
+Jalankan program melalui terminal VS Code dengan perintah:
 
 ```bash
+python3 latihan/01_trace_loop.py
+python3 latihan/02_trace_fungsi.py
+python3 latihan/03_test_case.py
+python3 latihan/04_debug_breakpoint.py
 python3 praktik/praktik_4_debugging.py
+```
+
+Program kasus dapat dijalankan dengan perintah:
+
+```bash
+python3 kasus/kasus_01_batas_kelulusan.py
+python3 kasus/kasus_02_rata_rata.py
+python3 kasus/kasus_03_file_nilai.py
+```
