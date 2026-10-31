@@ -37,7 +37,7 @@ Tabel tracing:
 
 Berdasarkan tracing tersebut, nilai `total` berubah pada setiap iterasi hingga menghasilkan 24.
 
-## 3. Kasus Debugging
+## 3. Bug Report dan Perbaikan
 
 Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki tiga fungsi, yaitu menghitung rata-rata nilai, menentukan status kelulusan, dan mencari nilai tertinggi.
 
@@ -76,17 +76,19 @@ Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki ti
 
 ## 5. Hasil Retest
 
-Pengujian ulang dilakukan setelah program diperbaiki. Hasil T1 sampai T5 telah diperoleh dari pengujian sebelumnya. T6 dan T7 merupakan pengujian tambahan yang akan dijalankan untuk memastikan program menangani data kosong.
+Pengujian ulang dilakukan setelah program diperbaiki untuk memastikan seluruh fungsi berjalan sesuai hasil yang diharapkan. Pengujian dilakukan menggunakan tujuh test case, termasuk pengujian data kosong.
 
 | ID | Expected Result | Actual Result | Status |
 |---|---|---|---|
-| T1 | 75.0 | 75.0 | Berhasil |
-| T2 | 90.0 | 90.0 | Berhasil |
-| T3 | Lulus | Lulus | Berhasil |
-| T4 | Tidak lulus | Tidak lulus | Berhasil |
-| T5 | 90 | 90 | Berhasil |
-T6 | Rata-rata data kosong | 0 | Berhasil
-T7 | Nilai tertinggi data kosong | None | Berhasil
+| T1 | 75.0 | 75.0 | PASS |
+| T2 | 90.0 | 90.0 | PASS |
+| T3 | Lulus | Lulus | PASS |
+| T4 | Tidak lulus | Tidak lulus | PASS |
+| T5 | 90 | 90 | PASS |
+| T6 | 0 | 0 | PASS |
+| T7 | None | None | PASS |
+
+Berdasarkan hasil pengujian, seluruh tujuh test case berhasil memperoleh hasil sesuai dengan yang diharapkan. Dengan demikian, perbaikan program tidak menunjukkan adanya kesalahan pada pengujian tersebut.
 
 ## 6. Kuis Formatif
 
