@@ -36,3 +36,9 @@ print("T6:", hitung_rata_rata([]))
 
 # Test Case 7: Data kosong untuk mencari nilai tertinggi
 print("T7:", nilai_tertinggi([]))
+
+# T8: Menguji input yang bukan berupa angka
+try:
+    status("abc")
+except TypeError:
+    print("T8: Input tidak valid terdeteksi")

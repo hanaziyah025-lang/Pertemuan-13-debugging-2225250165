@@ -43,6 +43,8 @@ Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki ti
 
 ### Bug 1: Perhitungan Rata-rata
 
+- Bug ID: BUG-01
+- Test Case: T1 dan T2
 - Gejala: hasil rata-rata tidak sesuai dengan jumlah data.
 - Lokasi: fungsi `hitung_rata_rata()`.
 - Penyebab: program membagi jumlah nilai dengan angka tetap 5.
@@ -50,6 +52,8 @@ Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki ti
 
 ### Bug 2: Status Kelulusan
 
+- Bug ID: BUG-02
+- Test Case: T3 dan T4
 - Gejala: nilai 60 dinyatakan tidak lulus.
 - Lokasi: fungsi `status()`.
 - Penyebab: menggunakan operator `>` sehingga nilai harus lebih besar dari 60.
@@ -57,10 +61,12 @@ Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki ti
 
 ### Bug 3: Nilai Tertinggi
 
+- Bug ID: BUG-03
+- Test Case: T5
 - Gejala: hasil nilai tertinggi selalu 0.
 - Lokasi: fungsi `nilai_tertinggi()`.
-- Penyebab: menggunakan perbandingan `<` dan nilai awal 0.
-- Perbaikan: menggunakan nilai pertama sebagai nilai awal dan mengganti operator `<` menjadi `>`.
+- Penyebab: menggunakan nilai awal 0 dan operator `<` sehingga perbandingan nilai menjadi terbalik.
+- Perbaikan: menggunakan elemen pertama sebagai nilai awal dan mengganti operator `<` menjadi `>`.
 
 ### Bukti Program Sebelum dan Sesudah Perbaikan
 
@@ -96,10 +102,11 @@ Tertinggi: 90
 | T5 | Nilai tertinggi `[80, 60, 90, 70]` | 90 |
 | T6 | Rata-rata `[]` | 0 |
 | T7 | Nilai tertinggi `[]` | None |
+| T8 | Status dengan input `"abc"` | Input tidak valid terdeteksi (TypeError) |
 
 ## 5. Hasil Retest
 
-Pengujian ulang dilakukan setelah program diperbaiki untuk memastikan seluruh fungsi berjalan sesuai hasil yang diharapkan. Pengujian dilakukan menggunakan tujuh test case, termasuk pengujian data kosong.
+Pengujian ulang dilakukan setelah program diperbaiki untuk memastikan seluruh fungsi berjalan sesuai hasil yang diharapkan. Pengujian dilakukan menggunakan delapan test case, termasuk pengujian data kosong dan input yang tidak valid.
 
 | ID | Expected Result | Actual Result | Status |
 |---|---|---|---|
@@ -110,8 +117,9 @@ Pengujian ulang dilakukan setelah program diperbaiki untuk memastikan seluruh fu
 | T5 | 90 | 90 | PASS |
 | T6 | 0 | 0 | PASS |
 | T7 | None | None | PASS |
+| T8 | Input tidak valid terdeteksi (TypeError) | Input tidak valid terdeteksi | PASS |
 
-Berdasarkan hasil pengujian, seluruh tujuh test case berhasil memperoleh hasil sesuai dengan yang diharapkan. Dengan demikian, perbaikan program tidak menunjukkan adanya kesalahan pada pengujian tersebut.
+Berdasarkan hasil pengujian, seluruh delapan test case berhasil memperoleh hasil sesuai dengan yang diharapkan. Dengan demikian, perbaikan program tidak menunjukkan adanya kesalahan pada seluruh pengujian yang dilakukan.
 
 ## 6. Kuis Formatif
 
@@ -157,9 +165,11 @@ Commit bertipe fix membantu mencatat perubahan yang dilakukan untuk memperbaiki 
 
 ## 7. Refleksi
 
-Teknik debugging yang paling membantu adalah tracing dan breakpoint karena dapat digunakan untuk mengetahui proses jalannya program serta melihat perubahan nilai variabel. Step Over membantu menjalankan program baris demi baris, sedangkan Step Into dapat digunakan untuk menelusuri perintah di dalam fungsi.
+Teknik debugging yang paling membantu adalah tracing dan breakpoint karena dapat digunakan untuk mengetahui proses jalannya program serta melihat perubahan nilai variabel. Step Over membantu menjalankan program baris demi baris tanpa masuk ke dalam fungsi, sedangkan Step Into digunakan untuk menelusuri perintah di dalam fungsi. Step Out digunakan untuk keluar dari fungsi yang sedang ditelusuri dan kembali ke baris pemanggil fungsi.
 
-Testing membantu memastikan bahwa program sudah berjalan sesuai harapan setelah diperbaiki. Melalui kegiatan ini, saya belajar menemukan penyebab kesalahan, memperbaiki kode, dan melakukan pengujian ulang.
+Selain itu, fitur Variables membantu melihat nilai variabel selama program dijalankan sehingga kesalahan lebih mudah ditemukan. Testing juga membantu memastikan bahwa program sudah berjalan sesuai harapan setelah diperbaiki.
+
+Melalui kegiatan ini, saya belajar menemukan penyebab kesalahan, memperbaiki kode, dan melakukan pengujian ulang. Saya juga memahami bahwa setiap perbaikan perlu diuji kembali agar tidak menimbulkan kesalahan baru pada bagian program lainnya.
 
 ## 8. Cara Menjalankan Program
 
