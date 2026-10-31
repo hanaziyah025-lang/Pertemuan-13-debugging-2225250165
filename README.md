@@ -62,6 +62,29 @@ Program yang diuji merupakan program pengolahan nilai mahasiswa yang memiliki ti
 - Penyebab: menggunakan perbandingan `<` dan nilai awal 0.
 - Perbaikan: menggunakan nilai pertama sebagai nilai awal dan mengganti operator `<` menjadi `>`.
 
+### Bukti Program Sebelum dan Sesudah Perbaikan
+
+Program sebelum perbaikan disimpan pada
+`praktik/praktik_4_debugging_awal.py`.
+
+Program setelah perbaikan disimpan pada
+`praktik/praktik_4_debugging_hasil_perbaikan.py`.
+
+Hasil pengujian menunjukkan bahwa ketiga bug berhasil diperbaiki.
+Rata-rata berubah dari 60.0 menjadi 75.0, status nilai 60 berubah
+dari Tidak lulus menjadi Lulus, dan nilai tertinggi berubah dari 0
+menjadi 90.
+
+Output sebelum perbaikan:
+Rata-rata: 60.0
+Status 60: Tidak lulus
+Tertinggi: 0
+
+Output sesudah perbaikan:
+Rata-rata: 75.0
+Status 60: Lulus
+Tertinggi: 90
+
 ## 4. Test Case
 
 | ID | Input | Expected Result |
@@ -156,4 +179,11 @@ Program kasus dapat dijalankan dengan perintah:
 python3 kasus/kasus_01_batas_kelulusan.py
 python3 kasus/kasus_02_rata_rata.py
 python3 kasus/kasus_03_file_nilai.py
+```
+
+Program sebelum dan sesudah perbaikan dapat dijalankan dengan perintah:
+
+```bash
+python3 praktik/praktik_4_debugging_awal.py
+python3 praktik/praktik_4_debugging_hasil_perbaikan.py
 ```
